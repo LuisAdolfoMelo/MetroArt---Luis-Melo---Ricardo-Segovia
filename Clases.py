@@ -12,12 +12,11 @@ class Artista:
         print(f"Fecha de muerte: {self.fecha_muerte}")
 
 class Obra:
-    def __init__(self,id,titulo,artista,departamento,tipo,año_creacion,imagen_url):
+    def __init__(self,id,titulo,artista,departamento,año_creacion,imagen_url):
         self.id = id
         self.titulo = titulo
         self.artista = artista
         self.departamento = departamento
-        self.tipo = tipo
         self.año_creacion = año_creacion
         self.imagen_url = imagen_url
 
@@ -27,9 +26,9 @@ class Obra:
         print(f"titulo: {self.titulo}")
         print(f"artista: {self.artista}")
         print(f"departamento: {self.departamento}")
-        print(f"tipo: {self.tipo}")
         print(f"año_creacion: {self.año_creacion}")
         print(f"imagen_url: {self.imagen_url}")
+        print()
 
 class Departamento:
     def __init__(self,id,nombre_departamento):
@@ -39,4 +38,5 @@ class Departamento:
     def show(self):
         print(f"ID: {self.id}")
         print(f"Nombre del departamento: {self.nombre_departamento}")
+        print()
         
