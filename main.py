@@ -1,1 +1,7 @@
-print("este es el main")
+from Museo import Museo
+
+def main():
+    museo = Museo()
+    museo.menu()
+
+main()

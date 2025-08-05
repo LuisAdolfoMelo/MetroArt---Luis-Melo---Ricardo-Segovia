@@ -30,4 +30,13 @@ class Obra:
         print(f"tipo: {self.tipo}")
         print(f"año_creacion: {self.año_creacion}")
         print(f"imagen_url: {self.imagen_url}")
+
+class Departamento:
+    def __init__(self,id,nombre_departamento):
+        self.id = id
+        self.nombre_departamento = nombre_departamento
+
+    def show(self):
+        print(f"ID: {self.id}")
+        print(f"Nombre del departamento: {self.nombre_departamento}")
         
