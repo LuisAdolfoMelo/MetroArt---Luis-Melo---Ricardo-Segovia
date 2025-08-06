@@ -1,7 +1,7 @@
 import requests
 from Clases import *
 import random
-
+from nacionalidades import lista_nacionalidades
 
 
 class Museo:
@@ -30,11 +30,9 @@ class Museo:
                 opcion_menu = int(opcion_menu)
 
                 if opcion_menu == 1:
-                    # self.mostrar_departamentos()
-                    # self.mostrar_obras()
                     self.mostrar_obras_por_departamento()
                 elif opcion_menu == 2:
-                    pass
+                   self.mostrar_nacionalidades()
 
                 elif opcion_menu == 3:
                     pass
@@ -74,13 +72,13 @@ class Museo:
     
     def obtener_obras(self):
         
-        """ Funcion para obtener las obrass desde la API"""
+        """ Funcion para obtener las obrass desde la API, se obtiene una muestra aleatorea de 200 objetos nada mas porque la computadora no me corre mas :C"""
 
         url = "https://collectionapi.metmuseum.org/public/collection/v1/objects"
 
         resp = requests.get(url)
         ids = resp.json()["objectIDs"]
-        return random.sample(ids, 100)
+        return random.sample(ids, 200)
         
     def obtener_info_obra(self,id_obra):
         """ Funcion para obtener la info de cada obra segun su ID"""
@@ -98,11 +96,8 @@ class Museo:
         self.obj_obras = []
 
         for id in lista_ids:
-            try:
                 info_obra = self.obtener_info_obra(id)
                 self.obj_obras.append(Obra(info_obra["objectID"],info_obra["title"],info_obra["artistDisplayName"],info_obra["department"],info_obra["culture"],info_obra["objectURL"]))
-            except:
-                pass
         print("LAS OBRAS SON LAS SIGUIENTES: ")
         for obra in self.obj_obras:
             obra.show()
@@ -111,19 +106,43 @@ class Museo:
         """Funcion para mostrar las obras por departamento"""
         self.mostrar_departamentos()
         id_depto = int(input("Ingrese el ID del departamento que desea ver: "))
+        
+        #Encontrar el departamento por el id ingreesado por el usuario
+        nombre_depto = None
+        for depto in self.obj_deptos:
+            if depto.id == id_depto:
+                nombre_depto = depto.nombre_departamento
+                break
+        
+        if not nombre_depto:
+            print("No existe un departamento con ese ID.")
+            return
+        
         lista_ids = self.obtener_obras()
         self.obj_obras = []
         for id in lista_ids:
-            info_obra = self.obtener_info_obra(id)
-            if "departmentId" in info_obra and info_obra["departmentId"] == id_depto:
-                self.obj_obras.append(Obra(info_obra["objectID"],info_obra["title"],info_obra["artistDisplayName"],info_obra["department"],info_obra["culture"],info_obra["objectURL"]))
-
+                info_obra = self.obtener_info_obra(id)
+                if "department" in info_obra and info_obra["department"] == nombre_depto:
+                    self.obj_obras.append(Obra(info_obra["objectID"],info_obra["title"],info_obra["artistDisplayName"],info_obra["department"],info_obra["culture"],info_obra["objectURL"]))
+           
+        print()
         print("LAS OBRAS DEL DEPARTAMENTO SELECCIONADO SON LAS SIGUIENTES: ")
+        print()
         for obra in self.obj_obras:
             obra.show()
         
-       
+    def mostrar_nacionalidades(self):
+        
+        print("Nacionalidades: ")
+        print()
+        for numero, nacionalidad in enumerate(lista_nacionalidades):
+            print(f"[{numero+1}] - {nacionalidad}")
 
-       
+    def mostrar_obras_por_nacionalidad(self):
+        pass
 
-     
+    def mostrar_obras_por_autor(self):
+        pass
+
+    def mostrar_autores(self):
+        pass
