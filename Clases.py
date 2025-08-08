@@ -6,28 +6,35 @@ class Artista:
         self.fecha_muerte = fecha_muerte
 
     def show(self):
-        print(f"""Nombre: {self.nombre}
-        Nacionalidad: {self.nacionalidad}
-        Fecha de nacimiento: {self.fecha_nacimiento}
-        Fecha de muerte: {self.fecha_muerte}""")
+        print(f"Nombre: {self.nombre}")
+        print(f"Nacionalidad: {self.nacionalidad}")
+        print(f"Fecha de nacimiento: {self.fecha_nacimiento}")
+        print(f"Fecha de muerte: {self.fecha_muerte}")
 
 class Obra:
-    def __init__(self,id,titulo,artista,departamento,año_creacion,imagen_url):
+    def __init__(self,id, titulo, nombre_artista, nacionalidad_artista, fecha_nacimiento_artista, fecha_muerte_artista, tipo, año_creacion, imagen_url, departamento):
         self.id = id
         self.titulo = titulo
-        self.artista = artista
-        self.departamento = departamento
+        self.nombre_artista = nombre_artista
+        self.nacionalidad_artista = nacionalidad_artista
+        self.fecha_nacimiento_artista = fecha_nacimiento_artista
+        self.fecha_muerte_artista = fecha_muerte_artista
+        self.tipo = tipo
         self.año_creacion = año_creacion
         self.imagen_url = imagen_url
+        self.departamento = departamento
 
-    
     def show(self):
-        print(f"id: {self.id}
-        Titulo: {self.titulo}
-        Artista: {self.artista}
-        Departamento: {self.departamento}
-        Año de creacion: {self.año_creacion}
-        Imagen_url: {self.imagen_url}""")
+        print(f"ID: {self.id}")
+        print(f"Titulo: {self.titulo}")
+        print(f"Nombre del Artista: {self.nombre_artista}")
+        print(f"Nacionalidad del Artista: {self.nacionalidad_artista}")
+        print(f"Fecha de Nacimiento del Artista: {self.fecha_nacimiento_artista}")
+        print(f"Fecha de Muerte del Artista: {self.fecha_muerte_artista}")
+        print(f"Tipo: {self.tipo}")
+        print(f"Año de Creacion: {self.año_creacion}")
+        print(f"Imagen URL: {self.imagen_url}")
+        print(f"Departamento: {self.departamento}")
         print()
 
 class Departamento:
@@ -36,7 +43,7 @@ class Departamento:
         self.nombre_departamento = nombre_departamento
 
     def show(self):
-        print(f"""ID: {self.id}
-        Nombre del departamento: {self.nombre_departamento}""")
+        print(f"ID: {self.id}")
+        print(f"Nombre del departamento: {self.nombre_departamento}")
         print()
         
